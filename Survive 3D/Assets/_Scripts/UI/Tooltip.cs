@@ -21,13 +21,13 @@ public class Tooltip : MonoBehaviour {
 		//Debug.Log("Here");
 		switch (shopItem) {
 			case 0:
-				tooltipText.text = "Increases player's move speed by 1 for each upgrade.";
+				tooltipText.text = "Passive: Increases player's move speed by 1 for each upgrade.";
 				break;
 			case 1:
-				tooltipText.text = "Increases player's fire rate by 20% for each upgrade.";
+				tooltipText.text = "Passive: Increases player's fire rate by 20% for each upgrade.";
 				break;
 			case 2:
-				tooltipText.text = "Regains 1 lost life.\nPress E to use.";
+				tooltipText.text = "Consumable: Regains 1 lost life. Press E to use.";
 				break;
 			default:
 				tooltipText.text = "";

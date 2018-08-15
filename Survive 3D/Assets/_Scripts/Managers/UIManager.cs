@@ -44,12 +44,12 @@ public class UIManager : MonoBehaviour {
 
 	public void SetCreditText(int value) {
 		hud.SetCreditText(value);
-		mainMenu.SetCreditText(value);
+		mainMenu.SetMenuText(0, value);
 	}
 
 	public void SetScoreText(int scoreValue, int highValue) {
 		hud.SetScoreText(scoreValue, highValue);
-		mainMenu.SetHighScore(highValue);
+		mainMenu.SetMenuText(1, highValue);
 	}
 
 	public void SetHealth(int value) {
