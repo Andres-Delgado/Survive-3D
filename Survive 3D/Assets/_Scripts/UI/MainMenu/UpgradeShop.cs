@@ -69,7 +69,7 @@ public class UpgradeShop : MonoBehaviour {
 				currentCostText.text = firePrice + " Credits";
 				break;
 			case 2:
-				currentUpgradeText.text = "Current Potions: " + ++potions;
+				//currentUpgradeText.text = "Current Potions: " + ++potions;
 				break;
 			default:
 				break;
@@ -80,6 +80,11 @@ public class UpgradeShop : MonoBehaviour {
 
 	public void SetCreditText(int value) {
 		creditsText.text = "Credits: " + value;
+	}
+
+	public void SetPotionText(int potions) {
+		TextMeshProUGUI potionText = shopItemObjects[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+		potionText.text = "Current Potions: " + potions;
 	}
 
 }

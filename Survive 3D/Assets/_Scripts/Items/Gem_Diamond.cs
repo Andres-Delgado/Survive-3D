@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gem_Diamond: Gem {
-
+public class Gem_Diamond : Gem {
 
 }
