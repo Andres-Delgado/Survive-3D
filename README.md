@@ -25,6 +25,7 @@ private int GetNumber(int xValue, int yValue) {
 
 Play it [here!](https://soggyboystudios.itch.io/survive-3d "Soggy Boy Studios")
 
-credit [Andres]
+Link with text [Andres.](https://github.com/Andres-Delgado "Andres Delgado's GitHub page")
+Link defined after [Andres' reddit.]
 
-[Andres]:(https://github.com/Andres-Delgado "Andres Delgado's GitHub page")
+[Andres' reddit]: https://www.reddit.com/user/SoggyBoi27
