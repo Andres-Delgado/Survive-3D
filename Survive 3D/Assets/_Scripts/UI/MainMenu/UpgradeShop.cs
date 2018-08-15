@@ -19,7 +19,6 @@ public class UpgradeShop : MonoBehaviour {
 	[Space]
 	[SerializeField] private int speedUpgrades = 0;
 	[SerializeField] private int fireUpgrades = 0;
-	//[SerializeField] private int potions = 0;
 
 	#endregion
 

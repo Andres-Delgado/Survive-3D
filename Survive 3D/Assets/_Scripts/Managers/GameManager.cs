@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour {
 	public void StartGame() {
 		running = true;
 		SpawnManager.Instance.StartGame();
-		//UIManager.Instance.MenuOff();
 		UIManager.Instance.MenuOnOff(false);
 	}
 
@@ -61,7 +60,6 @@ public class GameManager : MonoBehaviour {
 				UIManager.Instance.AbilityOn(1);
 				break;
 			default:
-				//UIManager.Instance.MenuOn();
 				UIManager.Instance.MenuOnOff(true);
 				break;
 		}

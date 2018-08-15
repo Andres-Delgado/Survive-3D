@@ -7,6 +7,7 @@ public abstract class Enemy : MonoBehaviour {
 	#region Variables
 
 	[Header("References")]
+	[SerializeField] public GameObject markerPrefab;
 	[SerializeField] private GameObject gemPrefab;
 
 	protected Rigidbody rbEnemy;

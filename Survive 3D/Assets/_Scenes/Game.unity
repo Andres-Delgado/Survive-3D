@@ -4558,10 +4558,6 @@ MonoBehaviour:
     type: 2}
   greenEnemyPrefab: {fileID: 1484022132373632, guid: 0e1a24629c07bef4aa469ec2fc8c53cb,
     type: 2}
-  markerBluePrefab: {fileID: 1274083571180822, guid: c9282872f9d1c2540ba0456961f01c52,
-    type: 2}
-  markerGreenPrefab: {fileID: 1274083571180822, guid: 7e04fa6f44d5fe5428241fb4331a087d,
-    type: 2}
   highScore: 0
   credits: 0
   blueSpawnTime: 1.5
@@ -10743,7 +10739,6 @@ MonoBehaviour:
   creditsText: {fileID: 575184021}
   tutorialObject: {fileID: 1934368515}
   exitCheckObject: {fileID: 1286065121}
-  upgradeShopScreen: {fileID: 1336672992}
 --- !u!222 &1470189553
 CanvasRenderer:
   m_ObjectHideFlags: 0

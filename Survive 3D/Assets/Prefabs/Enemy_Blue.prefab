@@ -183,6 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b7267b91e93ae468c7e15aa77bfe56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerPrefab: {fileID: 1274083571180822, guid: c9282872f9d1c2540ba0456961f01c52,
+    type: 2}
   gemPrefab: {fileID: 1837894763091484, guid: a0ac002df8efe294c84d05f126a69bff, type: 2}
   health: 1
   speed: 5

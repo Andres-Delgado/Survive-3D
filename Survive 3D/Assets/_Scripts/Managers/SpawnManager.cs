@@ -20,8 +20,6 @@ public class SpawnManager : MonoBehaviour {
 	[SerializeField] private GameObject playerPrefab;
 	[SerializeField] private GameObject blueEnemyPrefab;
 	[SerializeField] private GameObject greenEnemyPrefab;
-	[SerializeField] private GameObject markerBluePrefab;
-	[SerializeField] private GameObject markerGreenPrefab;
 
 	private Player player;
 
@@ -71,7 +69,6 @@ public class SpawnManager : MonoBehaviour {
 
 	private void Update() {
 		if (GameManager.Instance.isPaused || (!GameManager.Instance.running)) { return; }
-
 		CheckSpawns();
 	}
 
@@ -96,9 +93,9 @@ public class SpawnManager : MonoBehaviour {
 	}
 
 	IEnumerator SpawnBlue() {
-		float xValue = Random.Range(-9.0f, 9.0f);
-		float zValue = Random.Range(-9.0f, 9.0f);
-		StartCoroutine(PlaceBlueMarker(xValue, zValue));
+		float xValue = Random.Range(-9.5f, 9.5f);
+		float zValue = Random.Range(-9.5f, 9.5f);
+		StartCoroutine(PlaceMarker(0, xValue, zValue));
 
 		if (blueSpawnTime <= 0.6f) {
 			if ((Time.time - blueElapsedTime) < 15.0f) {
@@ -111,7 +108,6 @@ public class SpawnManager : MonoBehaviour {
 			}
 		}
 		yield return new WaitForSeconds(blueSpawnTime);
-
 		GameObject enemy = Instantiate<GameObject>(blueEnemyPrefab);
 		enemy.transform.parent = this.gameObject.transform;
 		enemy.GetComponent<IDamageable>().Init(xValue, zValue);
@@ -126,8 +122,7 @@ public class SpawnManager : MonoBehaviour {
 			increaseSpawnGreen = false;
 			greenSpawnTime = 1.75f;
 		}
-		StartCoroutine(PlaceGreenMarker(xValue, zValue));
-
+		StartCoroutine(PlaceMarker(1, xValue, zValue));
 		yield return new WaitForSeconds(greenSpawnTime);
 		GameObject enemy = Instantiate<GameObject>(greenEnemyPrefab);
 		enemy.transform.parent = this.gameObject.transform;
@@ -136,20 +131,26 @@ public class SpawnManager : MonoBehaviour {
 		isGreenSpawn = true;
 	}
 
-	// CAN COMBINE BLUE/GREEN MARKER BY ADDING 3RD PARAMETER TO CHECK ENEMY TYPE
-	IEnumerator PlaceBlueMarker(float x, float z) {
-		GameObject marker = Instantiate<GameObject>(markerBluePrefab);
-		marker.transform.parent = this.gameObject.transform;
-		marker.transform.localPosition = new Vector3(x, marker.transform.localPosition.y, z);
-		yield return new WaitForSeconds(blueSpawnTime + 0.75f);
-		Destroy(marker.gameObject);
-	}
-	IEnumerator PlaceGreenMarker(float x, float z) {
-		GameObject marker = Instantiate<GameObject>(markerGreenPrefab);
-		marker.transform.parent = this.gameObject.transform;
-		marker.transform.localPosition = new Vector3(x, marker.transform.localPosition.y, z);
-		yield return new WaitForSeconds(greenSpawnTime + 0.75f);
-		Destroy(marker.gameObject);
+	IEnumerator PlaceMarker(int enemyChoice, float x, float z) {
+		GameObject marker;
+		switch (enemyChoice) {
+			case 0:
+				marker = Instantiate<GameObject>(blueEnemyPrefab.GetComponent<Enemy>().markerPrefab);
+				marker.transform.parent = this.gameObject.transform;
+				marker.transform.localPosition = new Vector3(x, marker.transform.localPosition.y, z);
+				yield return new WaitForSeconds(blueSpawnTime + 0.75f);
+				Destroy(marker.gameObject);
+				break;
+			case 1:
+				marker = Instantiate<GameObject>(greenEnemyPrefab.GetComponent<Enemy>().markerPrefab);
+				marker.transform.parent = this.gameObject.transform;
+				marker.transform.localPosition = new Vector3(x, marker.transform.localPosition.y, z);
+				yield return new WaitForSeconds(greenSpawnTime + 0.75f);
+				Destroy(marker.gameObject);
+				break;
+			default:
+				break;
+		}
 	}
 
 	public void EndGame(int choice = 0) {
@@ -200,7 +201,6 @@ public class SpawnManager : MonoBehaviour {
 		UIManager.Instance.SetCreditText(credits);
 		UIManager.Instance.SetScoreText(0, highScore);
 		SetPotionText(upgrades[2]);
-
 		player.Die();
 	}
 
@@ -208,15 +208,15 @@ public class SpawnManager : MonoBehaviour {
 		return credits;
 	}
 
+	public int GetPotionCount() {
+		return upgrades[2];
+	}
+
 	public void SetItem(int choice, int creditValue) {
 		credits += creditValue;
 		upgrades[choice]++;
 		UIManager.Instance.SetCreditText(credits);
 		UIManager.Instance.SetPotionText(upgrades[2]);
-	}
-
-	public int GetPotionCount() {
-		return upgrades[2];
 	}
 
 	public void SetPotionText(int value) {
