@@ -14,7 +14,7 @@ sysinfo.txt
 *.pidb.meta
 
 # Visual Studio cache directory
-.vs/
+Survive\ 3D/.vs/
 
 ###
 # VS/MD solution and project files

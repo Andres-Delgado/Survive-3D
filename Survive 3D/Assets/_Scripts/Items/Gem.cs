@@ -13,15 +13,12 @@ public class Gem : MonoBehaviour {
 	#endregion
 
 	private void Start() {
-		try {
-			StartCoroutine(Despawn());
-		} catch (Exception e) {
+		try { StartCoroutine(Despawn()); }
+		catch (Exception e) {
 			Debug.Log("Exception Caught:\n");
 			Debug.LogException(e, this.gameObject);
 		}
-	}
 
-	private void Update() {
 	}
 
 	protected void OnTriggerEnter(Collider other) {
@@ -33,15 +30,15 @@ public class Gem : MonoBehaviour {
 		}
 	}
 
-	protected void DestroySelf() {
-		Destroy(this.gameObject);
-	}
-
 	IEnumerator Despawn() {
 		yield return new WaitForSeconds(5.0f);
 		if (!this.gameObject) {
 			throw new Exception("GameObject is null,");
 		}
+		Destroy(this.gameObject);
+	}
+
+	protected void DestroySelf() {
 		Destroy(this.gameObject);
 	}
 

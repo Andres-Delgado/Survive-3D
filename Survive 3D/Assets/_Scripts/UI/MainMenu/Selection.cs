@@ -28,23 +28,24 @@ public class Selection : MonoBehaviour {
 		creditsText.text = "Credits: " + credits;
 	}
 
-	public void EnterTutorial() {
-		tutorialObject.SetActive(true);
-		this.gameObject.SetActive(false);
+	public void EnterExitTutorial(bool enter) {
+		if (enter) {
+			tutorialObject.SetActive(true);
+			this.gameObject.SetActive(false);
+		} else {
+			this.gameObject.SetActive(true);
+			tutorialObject.SetActive(false);
+		}	
 	}
 
-	public void ExitTutorial() {
-		this.gameObject.SetActive(true);
-		tutorialObject.SetActive(false);
+	public void ExitGame(bool exit) {
+		if (exit) {
+			exitCheckObject.SetActive(true);
+			this.gameObject.SetActive(false);
+		} else {
+			this.gameObject.SetActive(true);
+			exitCheckObject.SetActive(false);
+		}
 	}
 
-	public void ExitGame() {
-		exitCheckObject.SetActive(true);
-		this.gameObject.SetActive(false);
-	}
-
-	public void ContinueGame() {
-		this.gameObject.SetActive(true);
-		exitCheckObject.SetActive(false);
-	}
 }
