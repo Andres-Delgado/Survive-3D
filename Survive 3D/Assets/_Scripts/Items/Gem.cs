@@ -7,7 +7,7 @@ public class Gem : MonoBehaviour {
 	#region Variables
 
 	[Header("Variables")]
-	[SerializeField] protected int gemValue = 5;
+	[SerializeField] protected int gemValue = 0;
 
 	#endregion
 

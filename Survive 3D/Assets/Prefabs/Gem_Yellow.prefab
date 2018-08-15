@@ -67,7 +67,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4153533106827976}
-  - component: {fileID: 114203193795016578}
+  - component: {fileID: 114622480545291964}
   - component: {fileID: 114987918460544892}
   - component: {fileID: 135651144467118338}
   m_Layer: 0
@@ -211,7 +211,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114203193795016578
+--- !u!114 &114622480545291964
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1837894763091484}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4eebf660acc4fe9458c99a12ab98d455, type: 3}
+  m_Script: {fileID: 11500000, guid: cc4af31348c289e43996ceffe48ebf04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gemValue: 5
