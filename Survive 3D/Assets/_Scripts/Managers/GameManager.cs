@@ -16,15 +16,17 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	[Header("Variables")]
-	public bool keyboardInput = true;
-	public bool isPaused = false;
-	public bool running = false;
+	public bool keyboardInput { get; set; }
+	public bool isPaused { get; set; }
+	public bool running { get; set; }
 
 	#endregion
 
 	private void Awake() {
 		_instance = this;
+		keyboardInput = true;
+		isPaused = false;
+		running = false;
 	}
 
 	private void Start() {

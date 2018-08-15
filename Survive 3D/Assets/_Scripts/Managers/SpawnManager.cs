@@ -152,22 +152,6 @@ public class SpawnManager : MonoBehaviour {
 		Destroy(marker.gameObject);
 	}
 
-	public void Push(Rigidbody other, Rigidbody origin, Vector3 contactPoint) {
-		StartCoroutine(PushStart(other, origin, contactPoint));
-	}
-
-	IEnumerator PushStart(Rigidbody other, Rigidbody origin, Vector3 contactPoint) {
-		Vector3 directionForce = contactPoint - origin.transform.position;
-		directionForce = directionForce.normalized;
-		directionForce.y = 0;
-
-		other.velocity = directionForce * 25;
-		yield return new WaitForSeconds(0.15f);
-		if (other != null) {
-			other.velocity = new Vector3(0, 0, 0);
-		}
-	}
-
 	public void EndGame(int choice = 0) {
 		StopAllCoroutines();
 		KillChildren();
