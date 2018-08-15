@@ -27,4 +27,4 @@ Play it [here!](https://soggyboystudios.itch.io/survive-3d "Soggy Boy Studios")
 
 credit [Andres]
 
-[Andres]: (https://github.com/Andres-Delgado "Andres Delgado's GitHub page")
+[Andres]:(https://github.com/Andres-Delgado "Andres Delgado's GitHub page")
