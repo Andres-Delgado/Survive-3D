@@ -29,10 +29,6 @@ public class GameManager : MonoBehaviour {
 		running = false;
 	}
 
-	private void Start() {
-
-	}
-
 	private void Update() {
 		if (!running) { return; }
 		if (keyboardInput) {
@@ -50,7 +46,8 @@ public class GameManager : MonoBehaviour {
 	public void StartGame() {
 		running = true;
 		SpawnManager.Instance.StartGame();
-		UIManager.Instance.MenuOff();
+		//UIManager.Instance.MenuOff();
+		UIManager.Instance.MenuOnOff(false);
 	}
 
 	public void EndGame(int choice) {
@@ -64,7 +61,8 @@ public class GameManager : MonoBehaviour {
 				UIManager.Instance.AbilityOn(1);
 				break;
 			default:
-				UIManager.Instance.MenuOn();
+				//UIManager.Instance.MenuOn();
+				UIManager.Instance.MenuOnOff(true);
 				break;
 		}
 	}

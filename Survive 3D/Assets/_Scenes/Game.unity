@@ -10743,6 +10743,7 @@ MonoBehaviour:
   creditsText: {fileID: 575184021}
   tutorialObject: {fileID: 1934368515}
   exitCheckObject: {fileID: 1286065121}
+  upgradeShopScreen: {fileID: 1336672992}
 --- !u!222 &1470189553
 CanvasRenderer:
   m_ObjectHideFlags: 0

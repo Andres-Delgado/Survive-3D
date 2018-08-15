@@ -42,8 +42,6 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 
-
-
 	public void SetPotionText(int value) {
 		upgradeShopScreen.SetPotionText(value);
 	}

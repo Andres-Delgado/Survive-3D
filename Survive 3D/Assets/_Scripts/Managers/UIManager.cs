@@ -83,18 +83,18 @@ public class UIManager : MonoBehaviour {
 		else { hud.BulletWaveOn(); }
 	}
 
-	public void MenuOn() {
-		Cursor.visible = true;
-		abilityScreen.gameObject.SetActive(false);
-		pauseMenu.gameObject.SetActive(false);
-		hud.gameObject.SetActive(false);
-		mainMenu.gameObject.SetActive(true);
-	}
-
-	public void MenuOff() {
-		if (!GameManager.Instance.keyboardInput) { Cursor.visible = false; }
-		mainMenu.gameObject.SetActive(false);
-		hud.gameObject.SetActive(true);
+	public void MenuOnOff(bool on) {
+		if (on) {
+			Cursor.visible = true;
+			abilityScreen.gameObject.SetActive(false);
+			pauseMenu.gameObject.SetActive(false);
+			hud.gameObject.SetActive(false);
+			mainMenu.gameObject.SetActive(true);
+		} else {
+			if (!GameManager.Instance.keyboardInput) { Cursor.visible = false; }
+			mainMenu.gameObject.SetActive(false);
+			hud.gameObject.SetActive(true);
+		}
 	}
 
 	public void AbilityOn(int choice) {
