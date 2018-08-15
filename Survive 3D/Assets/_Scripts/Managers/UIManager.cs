@@ -57,6 +57,7 @@ public class UIManager : MonoBehaviour {
 	}
 
 	public void SetPotionText(int value) {
+		mainMenu.SetPotionText(value);
 		hud.SetPotionText(value);
 	}
 

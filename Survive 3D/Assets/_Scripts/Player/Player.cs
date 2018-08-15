@@ -44,6 +44,13 @@ public class Player : MonoBehaviour {
 	/// <summary>
 	/// Initializes player with highscore, credits, and upgrades.
 	/// </summary>
+	/// <param name="highValue">Player's highscore</param>
+	/// <param name="creditValue">Player's credits</param>
+	/// <param name="speedUpgradeValue">Player's current speed upgrades</param>
+	/// <param name="fireRateUpgradeValue">Player's current firerate upgrades</param>
+	/// <param name="potionQuantity">Player's potion quantity</param>
+	/// <param name="dashAbility">Does player have Dash?</param>
+	/// <param name="bulletAbility">Does player have Bullet Wave?</param>
 	public void Init(int highValue, int creditValue, int speedUpgradeValue, int fireRateUpgradeValue, int potionQuantity, bool dashAbility, bool bulletAbility) {
 		highScore = highValue;
 		credits = creditValue;

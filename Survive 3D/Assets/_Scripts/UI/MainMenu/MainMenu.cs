@@ -19,6 +19,9 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void EnterShop() {
+		int potions = SpawnManager.Instance.GetPotionCount();
+		upgradeShopScreen.SetPotionText(potions);
+
 		selectionScreen.gameObject.SetActive(false);
 		upgradeShopScreen.gameObject.SetActive(true);
 	}
@@ -47,6 +50,10 @@ public class MainMenu : MonoBehaviour {
 	public void SetCreditText(int value) {
 		selectionScreen.SetCreditText(value);
 		upgradeShopScreen.SetCreditText(value);
+	}
+
+	public void SetPotionText(int value) {
+		upgradeShopScreen.SetPotionText(value);
 	}
 
 }

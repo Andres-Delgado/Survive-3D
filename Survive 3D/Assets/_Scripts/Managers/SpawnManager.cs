@@ -200,6 +200,7 @@ public class SpawnManager : MonoBehaviour {
 	private void CreatePlayer() {
 		GameObject _player = Instantiate<GameObject>(playerPrefab);
 		player = _player.GetComponent<Player>();
+		UIManager.Instance.SetPotionText(upgrades[2]);
 		player.Init(highScore, credits, upgrades[0], upgrades[1], upgrades[2], dashAbility, bulletWaveAbility);	
 	}
 
@@ -230,8 +231,11 @@ public class SpawnManager : MonoBehaviour {
 		UIManager.Instance.SetPotionText(upgrades[2]);
 	}
 
+	public int GetPotionCount() {
+		return upgrades[2];
+	}
+
 	public void SetPotionText(int value) {
-		//upgrades[2] = value;
 		UIManager.Instance.SetPotionText(value);
 	}
 }
