@@ -223,8 +223,6 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	
-
 	IEnumerator ShootTimer() {
 		yield return new WaitForSeconds(fireRate);
 		canShoot = true;
@@ -263,14 +261,11 @@ public class Player : MonoBehaviour {
 	}
 
 	public void Damage() {
-		// MOVE SHAKE TO GAMEMANAGER
-		anim.ShakeCamera();
+		Animations.Instance.ShakeCamera();
 		health--;
 		UIManager.Instance.SetHealth(health);
 
-		if (health <= 0) {
-			Death(0);
-		}
+		if (health <= 0) { Death(0); }
 	}
 
 	public void Death(int ground) {

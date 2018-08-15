@@ -26,16 +26,14 @@ public class Green : Enemy, IDamageable {
 		}
 		else if (other.gameObject.CompareTag("Player")) {
 			Rigidbody rbPlayer = other.gameObject.GetComponent<Rigidbody>();
-			//if (rbEnemy.transform.GetComponent<Player>().GetHealth() > 1) {
-				SpawnManager.Instance.Push(rbPlayer, rbEnemy, other.contacts[0].point);
-			//}
+			Animations.Instance.Push(rbPlayer, rbEnemy, other.contacts[0].point);
 			other.gameObject.GetComponent<Player>().Damage();
 			Damage(true);
 			
 		}
 		else if (canHitBlue && other.gameObject.CompareTag("Enemy")) {
 			Rigidbody rbPlayer = other.gameObject.GetComponent<Rigidbody>();
-			SpawnManager.Instance.Push(rbPlayer, rbEnemy, other.contacts[0].point);
+			Animations.Instance.Push(rbPlayer, rbEnemy, other.contacts[0].point);
 		}
 	}
 
