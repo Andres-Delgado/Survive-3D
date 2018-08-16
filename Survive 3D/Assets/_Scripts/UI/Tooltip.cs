@@ -20,7 +20,7 @@ public class Tooltip : MonoBehaviour {
 	public void TooltipOn() {
 		switch (shopItem) {
 			case 0:
-				tooltipText.text = "Passive: Increases player's move speed by 1 for each upgrade.";
+				tooltipText.text = "Passive: Every upgrade will increase movement speed.";
 				break;
 			case 1:
 				tooltipText.text = "Passive: Increases player's fire rate by 20% for each upgrade.";
