@@ -4277,8 +4277,8 @@ GameObject:
   m_Component:
   - component: {fileID: 612845534}
   - component: {fileID: 612845535}
-  - component: {fileID: 612845537}
   - component: {fileID: 612845536}
+  - component: {fileID: 612845537}
   m_Layer: 0
   m_Name: Ability_Screen
   m_TagString: Untagged
@@ -9518,15 +9518,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 657151663}
-        m_MethodName: MenuOn
-        m_Mode: 1
+        m_MethodName: MenuOnOff
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null

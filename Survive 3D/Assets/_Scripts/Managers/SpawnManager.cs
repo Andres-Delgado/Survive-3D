@@ -57,12 +57,12 @@ public class SpawnManager : MonoBehaviour {
 			Cursor.visible = true;
 		} else { Cursor.visible = false; }
 		if (dashAbility) {
-			UIManager.Instance.TurnOnDash();
-			UIManager.Instance.SetDash(true);
+			UIManager.Instance.TurnOnAbility(0);
+			UIManager.Instance.SetAbility(0, true);
 		}
 		if (bulletWaveAbility) {
-			UIManager.Instance.TurnOnBulletWave();
-			UIManager.Instance.SetBulletWave(true);
+			UIManager.Instance.TurnOnAbility(1);
+			UIManager.Instance.SetAbility(1, true);
 		}
 		enabled = true;
 	}
@@ -193,7 +193,7 @@ public class SpawnManager : MonoBehaviour {
 		if (choice != 9) {
 			highScore = player.GetHighScore();
 			if ((highScore >= 1000) && !dashAbility) { dashAbility = true; }
-			if ((highScore >= 1300) && !bulletWaveAbility) { bulletWaveAbility = true; }
+			else if ((highScore >= 1300) && !bulletWaveAbility) { bulletWaveAbility = true; }
 
 			credits = player.GetCredits();
 			upgrades[2] = player.getPotions();

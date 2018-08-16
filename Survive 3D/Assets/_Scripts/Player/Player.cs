@@ -67,24 +67,16 @@ public class Player : MonoBehaviour {
 	private void Update() {
 		if (GameManager.Instance.isPaused) { return; }
 
-		if (GameManager.Instance.keyboardInput && canShoot) {
-			if (Input.GetMouseButtonDown(0)) { Shoot(); }
-		}
-		else if (!GameManager.Instance.keyboardInput && canShoot) {
-			if (Mathf.Abs(Input.GetAxis("FireTrigger")) >= 0.75f) { Shoot(); }
+		if (GameManager.Instance.keyboardInput) {
+			if (canShoot && Input.GetMouseButtonDown(0)) { Shoot(); }
+			if ((potions > 0) && Input.GetKeyDown(KeyCode.E) && (health < 4)) { UsePotion(); }
+		} else {
+			if (canShoot && (Mathf.Abs(Input.GetAxis("FireTrigger")) >= 0.75f)) { Shoot(); }
+			if ((potions > 0) && Input.GetButtonDown("ControllerY") && (health < 4)) { UsePotion(); }
 		}
 
-		if (GameManager.Instance.keyboardInput && (potions > 0) && Input.GetKeyDown(KeyCode.E) && (health < 4)) {
-			UsePotion();
-		}
-		else if (!GameManager.Instance.keyboardInput && (potions > 0) && Input.GetButtonDown("ControllerY") && (health < 4)) {
-			UsePotion();
-		}
 		CheckDash();
-
 		CheckBulletWave();
-		
-
 	}
 
 	private void FixedUpdate() {
@@ -114,14 +106,17 @@ public class Player : MonoBehaviour {
 		if (inDashCooldown) {
 			if ((Time.time - dashCooldown) >= 10.0f) {
 				inDashCooldown = false;
-				UIManager.Instance.SetDash(true);
+				UIManager.Instance.SetAbility(0, true);
 			}
 		}
-		if (GameManager.Instance.keyboardInput && canDash && !inDashCooldown && Input.GetMouseButtonDown(1)) {
-			StartCoroutine(Dash());
-		}
-		else if (!GameManager.Instance.keyboardInput && canDash && !inDashCooldown && Input.GetButtonDown("ControllerLB")) {
-			StartCoroutine(Dash());
+		
+		if (canDash && !inDashCooldown) {
+			if (GameManager.Instance.keyboardInput && Input.GetMouseButtonDown(1)) {
+				StartCoroutine(Dash());
+			}
+			else if (!GameManager.Instance.keyboardInput && Input.GetButtonDown("ControllerLB")) {
+				StartCoroutine(Dash());
+			}
 		}
 	}
 
@@ -129,20 +124,23 @@ public class Player : MonoBehaviour {
 		if (inBulletWaveCooldown) {
 			if ((Time.time - bulletWaveCooldown) >= 10.0f) {
 				inBulletWaveCooldown = false;
-				UIManager.Instance.SetBulletWave(true);
+				UIManager.Instance.SetAbility(1, true);
 			}
 		}
 
-		if (GameManager.Instance.keyboardInput && canBulletWave && !inBulletWaveCooldown && Input.GetKeyDown(KeyCode.Space)) {
-			BulletWave();
+		if (canBulletWave && !inBulletWaveCooldown) {
+			if (GameManager.Instance.keyboardInput && Input.GetKeyDown(KeyCode.Space)) {
+				BulletWave();
+			}
+			if (!GameManager.Instance.keyboardInput && Input.GetButtonDown("ControllerB")) {
+				BulletWave();
+			}
 		}
-		else if (!GameManager.Instance.keyboardInput && canBulletWave && !inBulletWaveCooldown && Input.GetButtonDown("ControllerB")) {
-			BulletWave();
-		}
+
 	}
 
 	IEnumerator Dash() {
-		UIManager.Instance.SetDash(false);
+		UIManager.Instance.SetAbility(0, false);
 		dashCooldown = Time.time;
 		inDashCooldown = true;
 		Vector3 direction = graphicTrans.transform.forward.normalized;
@@ -153,7 +151,7 @@ public class Player : MonoBehaviour {
 	}
 
 	private void BulletWave() {
-		UIManager.Instance.SetBulletWave(false);
+		UIManager.Instance.SetAbility(1, false);
 		bulletWaveCooldown = Time.time;
 		inBulletWaveCooldown = true;
 
@@ -172,6 +170,7 @@ public class Player : MonoBehaviour {
 			bullet.GetComponent<Bullet>().Init(xValue, zValue);
 		}
 	}
+
 	private void Shoot() {
 		float angle = graphicTrans.eulerAngles.y;
 		if (angle > 180.0f) { angle -= 360.0f; }
@@ -188,15 +187,9 @@ public class Player : MonoBehaviour {
 		StartCoroutine(ShootTimer());
 	}
 
-	
-
 	private void RotateController() {
 		float joystickX = Input.GetAxis("ControllerXAxis");
 		float joystickY = Input.GetAxis("ControllerYAxis");
-		//if (Mathf.Abs(joystickX) <= sensitivity) { joystickX = 0.0f; }
-		//if (Mathf.Abs(joystickY) <= sensitivity) { joystickY = 0.0f; }
-		//Debug.Log("X: " + joystickX + "\nY: " + joystickY);
-
 		float angle = Mathf.Atan2(joystickX, joystickY) * Mathf.Rad2Deg;
 		graphicTrans.rotation = Quaternion.Euler(0, angle, 0);		
 	}
@@ -204,22 +197,17 @@ public class Player : MonoBehaviour {
 	private void RotateToMousePosition() {
 		Plane ground = new Plane(Vector3.up, transform.position);
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		float dist = 0f;
+		float dist = 0.0f;
 
 		if (ground.Raycast(ray, out dist)) {
-			//create a vector position at latest raycast hit point
 			Vector3 mousePoint = new Vector3(ray.GetPoint(dist).x,
 				transform.position.y, ray.GetPoint(dist).z);
 
 			//*useful for showing where ray comes from in testing ONLY
 			//Debug.DrawLine(ray.origin, mousePoint);
 
-			//rotate object toward vector position
 			Quaternion targetRotation = Quaternion.LookRotation(mousePoint - transform.position);
 			graphicTrans.rotation = Quaternion.Slerp(graphicTrans.rotation, targetRotation, 1.0f/*speed * Time.deltaTime*/);
-
-			//transform.rotation = new Quaternion(90, transform.rotation.z, transform.rotation.z, transform.rotation.w);
-			//transform.position = Vector3.Slerp(transform.position, mousePoint, speed * Time.deltaTime);
 		}
 	}
 
@@ -252,19 +240,14 @@ public class Player : MonoBehaviour {
 		UIManager.Instance.SetHealth(health);
 	}
 
-	public int getPotions() {
-		return potions;
-	}
+	public int getPotions() { return potions; }
 
-	public int GetHealth() {
-		return health;
-	}
+	public int GetHealth() { return health; }
 
 	public void Damage() {
 		Animations.Instance.ShakeCamera();
 		health--;
 		UIManager.Instance.SetHealth(health);
-
 		if (health <= 0) { Death(0); }
 	}
 
@@ -278,51 +261,6 @@ public class Player : MonoBehaviour {
 		else { GameManager.Instance.EndGame(ground); }
 	}
 
-	public void Die() {
-		Destroy(this.gameObject);
-	}
+	public void Die() { Destroy(this.gameObject); }
 
-	#region Legacy rotate methods
-	/*private void Rotate() {
-		Vector3 playerPosition = Camera.main.WorldToScreenPoint(transform.position);
-		Vector3 mousePosition = Input.mousePosition;
-
-		mousePosition.x -= playerPosition.x;
-		mousePosition.y -= playerPosition.y;
-
-
-		float angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
-		graphicTrans.rotation = Quaternion.Euler(new Vector3(0, (angle - 90.0f) * -1.0f, 0));
-	}
-
-	private void Rotate2() {
-		//Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f);
-		//Vector3 mousePosition = Camera.main.WorldToScreenPoint(Input.mousePosition);
-		//mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		float angle = 0;
-		Vector3 playerPosition = Camera.main.WorldToScreenPoint(transform.position);
-		Vector3 mousePosition = Input.mousePosition;
-
-		mousePosition.x -= playerPosition.x;
-		mousePosition.y -= playerPosition.y;
-
-		float distance = mousePosition.x * mousePosition.x;
-		distance += mousePosition.y * mousePosition.y;
-		distance = Mathf.Sqrt(distance);
-
-		Debug.Log("X: " + mousePosition.x);
-		Debug.Log("Y: " + mousePosition.y);
-		Debug.Log("Distance: " + distance);
-
-		if (mousePosition.x >= 0) {
-			angle = 90 - (Mathf.Asin(mousePosition.y / distance) * Mathf.Rad2Deg);
-			Debug.Log("ANGLE: " + angle);
-		}
-		else if (mousePosition.x < 0) {
-			angle = -90 + (Mathf.Asin(mousePosition.y / distance) * Mathf.Rad2Deg);
-			Debug.Log("ANGLE: " + angle);
-		}
-		graphicTrans.rotation = Quaternion.Euler(new Vector3(0, angle, 0));
-	}*/
-	#endregion
 }

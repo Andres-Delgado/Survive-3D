@@ -18,7 +18,6 @@ public class Tooltip : MonoBehaviour {
 	#endregion
 
 	public void TooltipOn() {
-		//Debug.Log("Here");
 		switch (shopItem) {
 			case 0:
 				tooltipText.text = "Passive: Increases player's move speed by 1 for each upgrade.";

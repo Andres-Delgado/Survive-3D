@@ -29,7 +29,6 @@ public class HUD : MonoBehaviour {
 	}
 
 	public void SetHealth(int value) {
-
 		for (int i = 0; i < 4; i++) {
 			if ((i + 1) <= value) { healthIcons[i].SetActive(true); }
 			else { healthIcons[i].SetActive(false); }
@@ -40,28 +39,33 @@ public class HUD : MonoBehaviour {
 		potionCountText.text = "x " + value;
 	}
 
-	public void TurnOnDash() {
-		dashImage.SetActive(true);
+	public void TurnOnAbility(int choice) {
+		switch (choice) {
+			case 0:
+				dashImage.SetActive(true);
+				break;
+			case 1:
+				bulletWaveImage.SetActive(true);
+				break;
+			default:
+				break;
+		}
 	}
 
-	public void TurnOnBulletWave() {
-		bulletWaveImage.SetActive(true);
+	public void DashingOnOff(bool indash) {
+		if (indash) {
+			dashImage.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+		} else {
+			dashImage.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+		}
 	}
 
-	public void DashingOn() {
-		dashImage.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
-	}
-
-	public void DashingOff() {
-		dashImage.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-	}
-
-	public void BulletWaveOn() {
-		bulletWaveImage.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
-	}
-
-	public void BulletWaveOff() {
-		bulletWaveImage.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+	public void BulletWaveOnOff(bool inBulletWave) {
+		if (inBulletWave) {
+			bulletWaveImage.transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+		} else {
+			bulletWaveImage.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+		}
 	}
 
 }

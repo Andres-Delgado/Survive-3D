@@ -61,26 +61,21 @@ public class UIManager : MonoBehaviour {
 		hud.SetPotionText(value);
 	}
 
-	public void TurnOnDash() {
-		hud.TurnOnDash();
+	public void TurnOnAbility(int choice) {
+		hud.TurnOnAbility(choice);
 	}
 
-	public void TurnOnBulletWave() {
-		hud.TurnOnBulletWave();
-	}
-
-	public void SetDash(bool canDash) {
-		if (canDash) {
-			hud.DashingOff();
+	public void SetAbility(int choice, bool canActivate) {
+		switch (choice) {
+			case 0:
+				hud.DashingOnOff(canActivate);
+				break;
+			case 1:
+				hud.BulletWaveOnOff(canActivate);
+				break;
+			default:
+				break;
 		}
-		else { hud.DashingOn(); }
-	}
-
-	public void SetBulletWave(bool canBulletWave) {
-		if (canBulletWave) {
-			hud.BulletWaveOff();
-		}
-		else { hud.BulletWaveOn(); }
 	}
 
 	public void MenuOnOff(bool on) {
@@ -103,10 +98,10 @@ public class UIManager : MonoBehaviour {
 		hud.gameObject.SetActive(false);
 		abilityScreen.gameObject.SetActive(true);
 		switch (choice) {
-			case 0:
+			case 1:
 				abilityScreen.DashScreenOn();
 				break;
-			case 1:
+			case 2:
 				abilityScreen.bulletScreenOn();
 				break;
 			default:

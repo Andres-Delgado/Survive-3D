@@ -54,10 +54,10 @@ public class GameManager : MonoBehaviour {
 		SpawnManager.Instance.EndGame(choice);
 		switch (choice) {
 			case 1:
-				UIManager.Instance.AbilityOn(0);
+				UIManager.Instance.AbilityOn(1);
 				break;
 			case 2:
-				UIManager.Instance.AbilityOn(1);
+				UIManager.Instance.AbilityOn(2);
 				break;
 			default:
 				UIManager.Instance.MenuOnOff(true);

@@ -23,8 +23,6 @@ public class Animations : MonoBehaviour {
 	[SerializeField] private float fadeIn = 0.1f;
 	[SerializeField] private float fadeOut = 1.0f;
 
-
-
 	#endregion
 
 	private void Awake() {

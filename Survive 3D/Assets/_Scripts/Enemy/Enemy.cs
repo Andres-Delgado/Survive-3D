@@ -58,7 +58,6 @@ public abstract class Enemy : MonoBehaviour {
 		positionEnemy.z *= -1.0f;
 
 		Vector3 velocity = positionEnemy.normalized * speed;
-		//rbEnemy.velocity = velocity;
 		rbEnemy.MovePosition(rbEnemy.position + velocity * Time.fixedDeltaTime);
 	}
 
@@ -72,7 +71,7 @@ public abstract class Enemy : MonoBehaviour {
 		if (health <= 0) {
 			if (!hitPlayer) {
 				playerTrans.GetComponent<Player>().SetScore(pointValue);
-				//Debug.Log("Setting Points.");
+
 			}
 			DestroySelf(hitPlayer);
 		}
@@ -84,7 +83,6 @@ public abstract class Enemy : MonoBehaviour {
 
 	protected virtual void DestroySelf(bool hitPlayer = false) {
 		if (!hitPlayer) {
-			//Debug.Log("Gem Spawn");
 			int number = Random.Range(0, dropRate);
 			if (number == 0) {
 				SpawnGem();
