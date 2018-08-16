@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class T_Selection : MonoBehaviour {
@@ -14,13 +16,22 @@ public class T_Selection : MonoBehaviour {
 	[SerializeField] private TextMeshProUGUI tooltipText;
 
 
-
+	[SerializeField] private bool selected = false;
 	#endregion
+
+	private void Update() {
+		if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
+			Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow)) && !selected) {
+			selected = true;
+			tutorialLevels[0].GetComponent<Button>().Select();
+		}
+	}
+
 
 	public void SelectTutorial(int level) {
 		try {
 			HideButtons();
-
+			selected = true;
 			tutorialLevels[level].transform.GetChild(0).gameObject.SetActive(true);
 			selectButtons[level].SetActive(true);
 			SetTooltipText(level);
@@ -40,6 +51,7 @@ public class T_Selection : MonoBehaviour {
 	}
 
 	private void SetTooltipText() {
+		selected = false;
 		tooltipText.text = "Press any one the tutorials to see a description here.";
 	}
 
@@ -63,5 +75,4 @@ public class T_Selection : MonoBehaviour {
 		}
 	}
 	
-
 }
