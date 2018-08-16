@@ -34,7 +34,7 @@ public class T_UIManager : MonoBehaviour {
 
 	public void SelectLevel(int level) {
 		tSelection.gameObject.SetActive(false);
-		tScreen.StartLevel(level);
+		tScreen.SelectLevel(level);
 	}
 
 	public void ExitToMenu() {

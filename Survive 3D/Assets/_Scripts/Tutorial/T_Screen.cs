@@ -11,7 +11,7 @@ public class T_Screen : MonoBehaviour {
 
 	#endregion
 
-	public void StartLevel(int level) {
+	public void SelectLevel(int level) {
 		this.gameObject.SetActive(true);
 		tutorials[level].SetActive(true);
 	}
@@ -21,5 +21,9 @@ public class T_Screen : MonoBehaviour {
 			tutorials[i].SetActive(false);
 		}
 		T_UIManager.Instance.ExitToMenu();
+	}
+
+	public void StartLevel(int level) {
+		T_GameManager.Instance.StartLevel(level);
 	}
 }
