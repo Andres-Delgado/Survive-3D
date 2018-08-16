@@ -11,28 +11,31 @@ public class T_Selection : MonoBehaviour {
 	#region Variables
 
 	[Header("References")]
-	[SerializeField] private GameObject[] tutorialLevels = new GameObject[4];
+	[SerializeField] private GameObject[] tutorialFrames = new GameObject[4];
 	[SerializeField] private GameObject[] selectButtons = new GameObject[4];
 	[SerializeField] private TextMeshProUGUI tooltipText;
 
 
 	[SerializeField] private bool selected = false;
+
 	#endregion
 
 	private void Update() {
 		if ((Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
 			Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow)) && !selected) {
 			selected = true;
-			tutorialLevels[0].GetComponent<Button>().Select();
+			tutorialFrames[0].GetComponent<Button>().Select();
 		}
+		
 	}
 
+	private void OnEnable() { HideButtons(true); }
 
 	public void SelectTutorial(int level) {
 		try {
 			HideButtons();
 			selected = true;
-			tutorialLevels[level].transform.GetChild(0).gameObject.SetActive(true);
+			tutorialFrames[level].transform.GetChild(0).gameObject.SetActive(true);
 			selectButtons[level].SetActive(true);
 			SetTooltipText(level);
 		} catch (Exception e) { Debug.LogException(e, this); }
@@ -42,7 +45,7 @@ public class T_Selection : MonoBehaviour {
 		try {
 			for (int i = 0; i < 4; i++) {
 				selectButtons[i].SetActive(false);
-				tutorialLevels[i].transform.GetChild(0).gameObject.SetActive(false);
+				tutorialFrames[i].transform.GetChild(0).gameObject.SetActive(false);
 			}
 			if (outsideClick) {
 				SetTooltipText();
@@ -52,6 +55,7 @@ public class T_Selection : MonoBehaviour {
 
 	private void SetTooltipText() {
 		selected = false;
+		EventSystem.current.SetSelectedGameObject(null);
 		tooltipText.text = "Press any one the tutorials to see a description here.";
 	}
 
@@ -74,5 +78,6 @@ public class T_Selection : MonoBehaviour {
 				break;
 		}
 	}
+	
 	
 }
