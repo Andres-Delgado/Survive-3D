@@ -56,7 +56,7 @@ public class T_Selection : MonoBehaviour {
 	private void SetTooltipText() {
 		selected = false;
 		EventSystem.current.SetSelectedGameObject(null);
-		tooltipText.text = "Press any one the tutorials to see a description here.";
+		tooltipText.text = "Press any of the tutorials to see a description here.";
 	}
 
 	private void SetTooltipText(int level) {

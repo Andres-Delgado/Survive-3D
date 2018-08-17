@@ -16,17 +16,24 @@ public class T_GameManager : MonoBehaviour {
 		}
 	}
 
-
+	public bool keyboardInput { get; set; }
+	public bool isPaused { get; set; }
 
 
 	#endregion
 
 	private void Awake() {
 		_instance = this;
+		keyboardInput = true;
+		isPaused = false;
 	}
 
 	public void StartLevel(int level) {
 
 		T_SpawnManager.Instance.StartLevel(level);
+	}
+
+	public void EndLevel(int choice, bool completed = false) {
+
 	}
 }

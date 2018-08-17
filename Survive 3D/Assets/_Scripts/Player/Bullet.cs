@@ -28,9 +28,8 @@ public class Bullet : MonoBehaviour {
 		}
 	}
 
-	private void FixedUpdate() {
+	protected virtual void FixedUpdate() {
 		if (GameManager.Instance.isPaused) { return; }
-
 		Move();
 	}
 
