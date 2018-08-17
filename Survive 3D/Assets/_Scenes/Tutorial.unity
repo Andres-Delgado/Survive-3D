@@ -8596,6 +8596,7 @@ MonoBehaviour:
   blueEnemyPrefab: {fileID: 1484022132373632, guid: e2f8fb96d5a947e44a11c6d89617216f,
     type: 2}
   greenEnemyPrefab: {fileID: 0}
+  killCount: 0
 --- !u!1 &629986205
 GameObject:
   m_ObjectHideFlags: 0
@@ -24085,6 +24086,7 @@ MonoBehaviour:
   - {fileID: 1183778107}
   - {fileID: 39716646}
   tooltipText: {fileID: 1658919945}
+  completedText: {fileID: 70107244}
   selected: 0
 --- !u!114 &1883471194
 MonoBehaviour:

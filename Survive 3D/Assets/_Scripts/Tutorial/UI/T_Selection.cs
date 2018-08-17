@@ -14,9 +14,13 @@ public class T_Selection : MonoBehaviour {
 	[SerializeField] private GameObject[] tutorialFrames = new GameObject[4];
 	[SerializeField] private GameObject[] selectButtons = new GameObject[4];
 	[SerializeField] private TextMeshProUGUI tooltipText;
+	[SerializeField] private TextMeshProUGUI completedText;
 
-
+	[Header("Variables")]
 	[SerializeField] private bool selected = false;
+
+	private bool[] completedLevels = new bool[4];
+	private int completed = 0;
 
 	#endregion
 
@@ -30,6 +34,14 @@ public class T_Selection : MonoBehaviour {
 	}
 
 	private void OnEnable() { HideButtons(true); }
+
+	public void CompletedLevel(int level) {
+		if (completedLevels[level]) { return; }
+		completedLevels[level] = true;
+		completed++;
+		completedText.text = "Completed " + completed + "/4";
+		tutorialFrames[level].transform.GetChild(3).gameObject.SetActive(true);
+	}
 
 	public void SelectTutorial(int level) {
 		try {

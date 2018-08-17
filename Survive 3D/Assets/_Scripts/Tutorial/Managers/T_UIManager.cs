@@ -52,5 +52,9 @@ public class T_UIManager : MonoBehaviour {
 		tScreen.gameObject.SetActive(false);
 		tSelection.gameObject.SetActive(true);
 	}
+
+	public void CompletedLevel(int level) {
+		tSelection.CompletedLevel(level);
+	}
 }
 

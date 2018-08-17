@@ -54,6 +54,9 @@ public class T_GameManager : MonoBehaviour {
 		if (!completed) {
 			T_SpawnManager.Instance.EndLevel();
 		}
+		else {
+			T_UIManager.Instance.CompletedLevel(level);
+		}
 		running = false;
 		T_UIManager.Instance.MenuOn();
 	}
