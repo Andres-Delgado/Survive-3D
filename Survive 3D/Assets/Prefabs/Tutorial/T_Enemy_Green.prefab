@@ -19,11 +19,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4266440636801244}
-  - component: {fileID: 114190311562594714}
+  - component: {fileID: 114512374112292206}
   - component: {fileID: 135054129881043108}
   - component: {fileID: 54294933714639872}
   m_Layer: 11
-  m_Name: T_Enemy_Blue
+  m_Name: T_Enemy_Green
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,8 +69,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1484022132373632}
   m_LocalRotation: {x: -0, y: 0.19509031, z: -0, w: 0.98078537}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 3.5, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4820525089760132}
   m_Father: {fileID: 0}
@@ -118,7 +118,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 2d218475bae9be346b827ac3aed29022, type: 2}
+  - {fileID: 2100000, guid: a8478e8b50370774f8e8f66741dd6334, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -152,7 +152,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1484022132373632}
   serializedVersion: 2
-  m_Mass: 5
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -172,7 +172,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114190311562594714
+--- !u!114 &114512374112292206
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,15 +180,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1484022132373632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 472a159eb78cba846aac432f66c88cd5, type: 3}
+  m_Script: {fileID: 11500000, guid: 008b68230e2f60f42ac7c584796eaa33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  markerPrefab: {fileID: 1274083571180822, guid: c9282872f9d1c2540ba0456961f01c52,
+  markerPrefab: {fileID: 1274083571180822, guid: 7e04fa6f44d5fe5428241fb4331a087d,
     type: 2}
-  gemPrefab: {fileID: 1837894763091484, guid: 529c18545e503b84c83afade8f62d390, type: 2}
-  health: 1
-  speed: 5
-  pointValue: 5
+  gemPrefab: {fileID: 1837894763091484, guid: 44e7b1f88143b8b4c8ee37080a90531a, type: 2}
+  health: 3
+  speed: 4
+  pointValue: 10
   dropRate: 3
 --- !u!135 &135054129881043108
 SphereCollider:

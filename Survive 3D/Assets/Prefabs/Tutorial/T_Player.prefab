@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 114277346771078978}
   - component: {fileID: 135911947828971634}
   - component: {fileID: 54901025538817222}
+  - component: {fileID: 114348166071289896}
   m_Layer: 10
   m_Name: T_Player
   m_TagString: Player
@@ -251,6 +252,22 @@ MonoBehaviour:
   fireRate: 0.5
   potions: 0
   canDash: 0
+  score: 0
+--- !u!114 &114348166071289896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1412784323098312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c0834801f3aa74f9ba1a44607eabdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magnitude: 2
+  roughness: 7.5
+  fadeIn: 0.1
+  fadeOut: 1
 --- !u!135 &135911947828971634
 SphereCollider:
   m_ObjectHideFlags: 1

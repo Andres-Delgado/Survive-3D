@@ -71,7 +71,6 @@ public abstract class Enemy : MonoBehaviour {
 		if (health <= 0) {
 			if (!hitPlayer) {
 				playerTrans.GetComponent<Player>().SetScore(pointValue);
-
 			}
 			DestroySelf(hitPlayer);
 		}

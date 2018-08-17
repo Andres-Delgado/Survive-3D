@@ -30,32 +30,31 @@ public class T_GameManager : MonoBehaviour {
 
 	}
 
-	/*private void Update() {
+	private void Update() {
 		if (!running) { return; }
 		if (keyboardInput) {
 			if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) {
-				//UIManager.Instance.PauseToggle(isPaused);
+				T_UIManager.Instance.PauseToggle(isPaused);
 			}
 		}
 		else {
 			if (Input.GetButtonDown("ControllerStart")) {
-				//UIManager.Instance.PauseToggle(isPaused);
+				T_UIManager.Instance.PauseToggle(isPaused);
 			}
 		}
-	}*/
+	}
 
 	public void StartLevel(int level) {
 		running = true;
-		T_UIManager.Instance.StartLevel();
+		T_UIManager.Instance.StartLevel(level);
 		T_SpawnManager.Instance.StartLevel(level);
 	}
 
 	public void EndLevel(int level, bool completed = false) {
-		if (!completed) {
-			T_SpawnManager.Instance.EndLevel();
-		}
-		else {
+		if (completed) {
 			T_UIManager.Instance.CompletedLevel(level);
+		} else {
+			T_SpawnManager.Instance.EndLevel();
 		}
 		running = false;
 		T_UIManager.Instance.MenuOn();

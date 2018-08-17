@@ -28,18 +28,22 @@ public class T_Player : MonoBehaviour {
 	private float dashCooldown = 0.0f;
 	//private int credits = 0;
 
+	private bool allowedMove = true;
+
 	#endregion
 
 	private void Awake() {
 		rbPlayer = this.GetComponent<Rigidbody>();
 	}
 
-	public void Init(int creditValue, int speedUpgradeValue, int fireRateUpgradeValue, int potionQuantity, bool dashAbility) {
+	public void Init(int creditValue, int speedUpgradeValue, int fireRateUpgradeValue, int potionQuantity, bool dashAbility, bool canMove = true, bool _canShoot = true) {
 		//credits = creditValue;
 		speed += speedUpgradeValue;
-		fireRate *= Mathf.Pow(0.8f, fireRateUpgradeValue);
+		//fireRate *= Mathf.Pow(0.8f, fireRateUpgradeValue);
 		potions = potionQuantity;
 		canDash = dashAbility;
+		allowedMove = canMove;
+		canShoot = _canShoot;
 		//UIManager.Instance.SetScoreText(score, highScore);
 		//UIManager.Instance.SetCreditText(credits);
 		//UIManager.Instance.SetHealth(health);
@@ -62,7 +66,13 @@ public class T_Player : MonoBehaviour {
 
 	private void FixedUpdate() {
 		if (T_GameManager.Instance.isPaused) { return; }
-		Move();
+		if (allowedMove) { Move(); }
+		else { if (T_GameManager.Instance.keyboardInput) {
+				if ((Mathf.Abs(Input.GetAxisRaw("Mouse X")) > 0) || (Mathf.Abs(Input.GetAxisRaw("Mouse Y")) > 0)) {
+					RotateToMousePosition();
+				}
+			}
+		}
 	}
 
 	private void Move() {
@@ -173,7 +183,7 @@ public class T_Player : MonoBehaviour {
 	public void Damage() {
 		Animations.Instance.ShakeCamera();
 		health--;
-		//UIManager.Instance.SetHealth(health);
+		T_UIManager.Instance.SetHealth(health);
 		if (health <= 0) { Death(0); }
 	}
 
@@ -195,6 +205,11 @@ public class T_Player : MonoBehaviour {
 		//credits += value;
 		//UIManager.Instance.SetCreditText(credits);
 	}
+
+	public void StartMove() {
+		allowedMove = true;
+		canShoot = true;
+}
 
 	public void Die() {
 		Destroy(this.gameObject);

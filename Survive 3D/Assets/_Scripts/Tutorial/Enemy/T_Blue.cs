@@ -8,6 +8,7 @@ public class T_Blue : Enemy, IDamageable {
 
 	private bool canHitPlayer = false;
 	private bool allowedMove = false;
+	private bool canSpawnGem = false;
 
 	#endregion
 
@@ -16,9 +17,10 @@ public class T_Blue : Enemy, IDamageable {
 		playerTrans = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 	}
 
-	public void Init(float x, float z, bool move, bool canHit) {
+	public void Init(float x, float z, bool _canSpawnGem = true, bool move = true, bool canHit = true) {
 		transform.localPosition = new Vector3(x, 3.0f, z);
 		playerTrans = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+		canSpawnGem = _canSpawnGem;
 		allowedMove = move;
 		canHitPlayer = canHit;
 	}
@@ -36,7 +38,7 @@ public class T_Blue : Enemy, IDamageable {
 
 		if (other.gameObject.CompareTag("Player")) {
 			if (canHitPlayer) {
-				//other.gameObject.GetComponent<T_Player>().Damage();
+				other.gameObject.GetComponent<T_Player>().Damage();
 			}
 			Damage(true);
 		}
@@ -47,18 +49,20 @@ public class T_Blue : Enemy, IDamageable {
 	}
 
 	public override void Damage(bool hitPlayer = false) {
-		T_SpawnManager.Instance.IncrementKills();
-
 		if (!hitPlayer) {
 			playerTrans.GetComponent<T_Player>().SetScore(pointValue);
 		}
+		T_SpawnManager.Instance.IncrementKills();
 		DestroySelf(hitPlayer);
 
 	}
 
 	protected override void DestroySelf(bool hitPlayer = false) {
-		if (!hitPlayer) {
-			//////////////////// Spawn Gem
+		if (canSpawnGem && !hitPlayer) {
+			int number = Random.Range(0, dropRate);
+			if (number == 0) {
+				SpawnGem();
+			}
 		}
 		Destroy(this.gameObject);
 	}
