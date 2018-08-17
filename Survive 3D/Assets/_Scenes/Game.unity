@@ -2187,7 +2187,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567452046}
         m_MethodName: MainMenuFromPause
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2465,7 +2465,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567452046}
         m_MethodName: PauseOff
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
