@@ -9,4 +9,12 @@ public class T_Bullet : Bullet {
 		Move();
 	}
 
+	protected override void OnTriggerEnter(Collider other) {
+		if (other.CompareTag("EnemyModel")) {
+			IDamageable enemy = other.GetComponentInParent<IDamageable>();
+			enemy.Damage();
+			DestroySelf();
+		}
+	}
+
 }

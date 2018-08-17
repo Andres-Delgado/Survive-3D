@@ -17,13 +17,17 @@ public class T_Screen : MonoBehaviour {
 	}
 
 	public void ExitToMenu() {
-		for (int i = 0; i < 4; i++) {
-			tutorials[i].SetActive(false);
-		}
+		DeactivateAll();
 		T_UIManager.Instance.ExitToMenu();
 	}
 
 	public void StartLevel(int level) {
 		T_GameManager.Instance.StartLevel(level);
+	}
+
+	public void DeactivateAll() {
+		for (int i = 0; i < 4; i++) {
+			tutorials[i].SetActive(false);
+		}
 	}
 }

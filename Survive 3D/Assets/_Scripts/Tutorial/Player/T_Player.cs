@@ -32,6 +32,17 @@ public class T_Player : MonoBehaviour {
 		rbPlayer = this.GetComponent<Rigidbody>();
 	}
 
+	public void Init(int creditValue, int speedUpgradeValue, int fireRateUpgradeValue, int potionQuantity, bool dashAbility) {
+		//credits = creditValue;
+		speed += speedUpgradeValue;
+		fireRate *= Mathf.Pow(0.8f, fireRateUpgradeValue);
+		potions = potionQuantity;
+		canDash = dashAbility;
+		//UIManager.Instance.SetScoreText(score, highScore);
+		//UIManager.Instance.SetCreditText(credits);
+		//UIManager.Instance.SetHealth(health);
+	}
+
 	private void Update() {
 		if (T_GameManager.Instance.isPaused) { return; }
 
@@ -170,5 +181,12 @@ public class T_Player : MonoBehaviour {
 		T_GameManager.Instance.EndLevel(ground);
 	}
 
+	public void SetCredits(int value) {
+		//credits += value;
+		//UIManager.Instance.SetCreditText(credits);
+	}
 
+	public void Die() {
+		Destroy(this.gameObject);
+	}
 }

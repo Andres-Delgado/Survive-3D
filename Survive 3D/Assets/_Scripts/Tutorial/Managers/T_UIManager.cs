@@ -41,5 +41,16 @@ public class T_UIManager : MonoBehaviour {
 		tScreen.gameObject.SetActive(false);
 		tSelection.gameObject.SetActive(true);
 	}
+
+	public void StartLevel() {
+		tScreen.gameObject.SetActive(false);
+		tSelection.gameObject.SetActive(false);
+	}
+
+	public void MenuOn() {
+		tScreen.DeactivateAll();
+		tScreen.gameObject.SetActive(false);
+		tSelection.gameObject.SetActive(true);
+	}
 }
 

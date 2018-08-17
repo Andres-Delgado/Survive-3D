@@ -18,7 +18,7 @@ public class T_GameManager : MonoBehaviour {
 
 	public bool keyboardInput { get; set; }
 	public bool isPaused { get; set; }
-
+	public bool running { get; set; }
 
 	#endregion
 
@@ -26,14 +26,47 @@ public class T_GameManager : MonoBehaviour {
 		_instance = this;
 		keyboardInput = true;
 		isPaused = false;
+		running = false;
+
 	}
 
-	public void StartLevel(int level) {
+	/*private void Update() {
+		if (!running) { return; }
+		if (keyboardInput) {
+			if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)) {
+				//UIManager.Instance.PauseToggle(isPaused);
+			}
+		}
+		else {
+			if (Input.GetButtonDown("ControllerStart")) {
+				//UIManager.Instance.PauseToggle(isPaused);
+			}
+		}
+	}*/
 
+	public void StartLevel(int level) {
+		running = true;
+		T_UIManager.Instance.StartLevel();
 		T_SpawnManager.Instance.StartLevel(level);
 	}
 
-	public void EndLevel(int choice, bool completed = false) {
+	public void EndLevel(int level, bool completed = false) {
+		/*switch (level) {
+			case 0:
+				break;
+			case 1:
 
+				break;
+			case 2:
+
+				break;
+			case 3:
+
+				break;
+			default:
+				break;
+		}*/
+		running = false;
+		T_UIManager.Instance.MenuOn();
 	}
 }

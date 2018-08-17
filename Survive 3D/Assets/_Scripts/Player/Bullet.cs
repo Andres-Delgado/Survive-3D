@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour {
 		enabled = true;
 	}
 
-	private void Update() {
+	protected virtual void Update() {
 		if ((Mathf.Abs(transform.position.x) >= 25.0f) || (Mathf.Abs(transform.position.z) >= 25.0f)) {
 			DestroySelf();
 		}
@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour {
 		transform.Translate(velocity);
 	}
 
-	private void OnTriggerEnter(Collider other) {
+	protected virtual void OnTriggerEnter(Collider other) {
 		if (other.CompareTag("EnemyModel")) {
 			IDamageable enemy = other.GetComponentInParent<IDamageable>();
 			enemy.Damage();
@@ -48,7 +48,7 @@ public class Bullet : MonoBehaviour {
 		}
 	}
 
-	private void DestroySelf() {
+	protected virtual void DestroySelf() {
 		Destroy(this.gameObject);
 	}
 }

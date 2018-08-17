@@ -16,8 +16,14 @@ public class T_SpawnManager : MonoBehaviour {
 		}
 	}
 
+	[Header("Object References")]
+	[SerializeField] private GameObject playerPrefab;
+	[SerializeField] private GameObject blueEnemyPrefab;
+	[SerializeField] private GameObject greenEnemyPrefab;
 
-
+	private T_Player player;
+	private int currentTutorial = 0;
+	private int killCount = 0;
 
 	#endregion
 
@@ -25,7 +31,94 @@ public class T_SpawnManager : MonoBehaviour {
 		_instance = this;
 	}
 
+	private void Update() {
+		if (T_GameManager.Instance.isPaused || (!T_GameManager.Instance.running)) { return; }
+		CheckIfFinished(currentTutorial);
+	}
+
 	public void StartLevel(int level) {
-		Debug.Log("Starting Tutorial: " + level);
+		switch (level) {
+			case 0:
+				currentTutorial = killCount = 0;
+				CreatePlayer(0);
+				SpawnLevel0();
+				break;
+			case 1:
+
+				break;
+			case 2:
+
+				break;
+			case 3:
+
+				break;
+			default:
+				break;
+		}
+	}
+
+	private void CheckIfFinished(int level) {
+		switch (level) {
+			case 0:
+				if (killCount >= 8) {
+					KillPlayer();
+					T_GameManager.Instance.EndLevel(0, true);
+				}
+				break;
+			case 1:
+
+				break;
+			case 2:
+
+				break;
+			case 3:
+
+				break;
+			default:
+				break;
+		}
+	}
+
+	private void CreatePlayer(int level) {
+		GameObject _player = Instantiate<GameObject>(playerPrefab);
+		player = _player.GetComponent<T_Player>();
+		//UIManager.Instance.SetPotionText(upgrades[2]);
+		//player.Init(highScore, credits, upgrades[0], upgrades[1], upgrades[2], dashAbility, bulletWaveAbility);
+		player.Init(0, 0, 0, 0, false);
+	}
+
+	private void KillPlayer() {
+		player.Die();
+	}
+
+	private void SpawnLevel0() {
+		int xPosition = 7;
+		int zPosition = 7;
+		for (int i = 0; i < 4; i++) {
+			zPosition *= -1;
+			if (i == 2) { xPosition *= -1; }
+
+			GameObject enemy = Instantiate<GameObject>(blueEnemyPrefab);
+			enemy.transform.parent = this.gameObject.transform;
+			enemy.GetComponent<IDamageable>().Init(xPosition, zPosition);
+		}
+
+		xPosition = 0;
+		zPosition = 5;
+		for (int i = 0; i < 4; i++) {
+			xPosition *= -1;
+			zPosition *= -1;
+			if (i == 2) {
+				xPosition = 5;
+				zPosition = 0;
+			}
+			GameObject enemy = Instantiate<GameObject>(blueEnemyPrefab);
+			enemy.transform.parent = this.gameObject.transform;
+			enemy.GetComponent<IDamageable>().Init(xPosition, zPosition);
+		}
+	}
+
+	public void IncrementKills() {
+		killCount++;
 	}
 }

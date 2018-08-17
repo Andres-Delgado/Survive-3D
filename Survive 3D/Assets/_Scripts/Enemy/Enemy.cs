@@ -8,7 +8,7 @@ public abstract class Enemy : MonoBehaviour {
 
 	[Header("References")]
 	[SerializeField] public GameObject markerPrefab;
-	[SerializeField] private GameObject gemPrefab;
+	[SerializeField] protected GameObject gemPrefab;
 
 	protected Rigidbody rbEnemy;
 	protected Transform playerTrans;

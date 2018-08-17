@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ground : MonoBehaviour {
+public class T_Ground : Ground {
 
-	protected virtual void OnCollisionEnter(Collision other) {
+	protected override void OnCollisionEnter(Collision other) {
 		if (other.gameObject.CompareTag("Player")) {
-			other.gameObject.GetComponent<Player>().Death(0);
+			other.gameObject.GetComponent<T_Player>().Death(0);
 		}
 		else if (other.gameObject.CompareTag("Enemy")) {
 			other.gameObject.GetComponent<Enemy>().Death();
