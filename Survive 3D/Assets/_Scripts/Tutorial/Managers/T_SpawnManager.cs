@@ -20,10 +20,10 @@ public class T_SpawnManager : MonoBehaviour {
 	[SerializeField] private GameObject playerPrefab;
 	[SerializeField] private GameObject blueEnemyPrefab;
 	[SerializeField] private GameObject greenEnemyPrefab;
+	[SerializeField] private int killCount = 0;
 
 	private T_Player player;
 	private int currentTutorial = 0;
-	private int killCount = 0;
 
 	#endregion
 
@@ -61,6 +61,7 @@ public class T_SpawnManager : MonoBehaviour {
 		switch (level) {
 			case 0:
 				if (killCount >= 8) {
+					KillChildren();
 					KillPlayer();
 					T_GameManager.Instance.EndLevel(0, true);
 				}
@@ -79,6 +80,11 @@ public class T_SpawnManager : MonoBehaviour {
 		}
 	}
 
+	public void EndLevel() {
+		KillChildren();
+		KillPlayer();
+	}
+
 	private void CreatePlayer(int level) {
 		GameObject _player = Instantiate<GameObject>(playerPrefab);
 		player = _player.GetComponent<T_Player>();
@@ -89,6 +95,19 @@ public class T_SpawnManager : MonoBehaviour {
 
 	private void KillPlayer() {
 		player.Die();
+	}
+
+	private void KillChildren() {
+		int childCount = transform.childCount;
+		Transform[] children = new Transform[childCount];
+
+		for (int i = 0; i < childCount; i++) {
+			children[i] = transform.GetChild(i).GetComponent<Transform>();
+		}
+
+		for (int i = 0; i < childCount; i++) {
+			Destroy(children[i].gameObject);
+		}
 	}
 
 	private void SpawnLevel0() {

@@ -37,7 +37,7 @@ public class T_Blue : Enemy, IDamageable {
 
 	public override void Damage(bool hitPlayer = false) {
 		T_SpawnManager.Instance.IncrementKills();
-		DestroySelf();
+		Destroy(this.gameObject);
 	}
 
 	protected override void DestroySelf(bool hitPlayer = false) {
@@ -51,6 +51,10 @@ public class T_Blue : Enemy, IDamageable {
 
 	public void SetMove(bool _canMove) {
 		canMove = _canMove;
+	}
+
+	public override void Death() {
+		Damage();
 	}
 
 }

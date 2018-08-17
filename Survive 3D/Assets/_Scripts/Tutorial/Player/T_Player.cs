@@ -178,6 +178,9 @@ public class T_Player : MonoBehaviour {
 			GameManager.Instance.EndGame(2);
 		}
 		else { GameManager.Instance.EndGame(ground); }*/
+		if (ground == 0) {
+
+		}
 		T_GameManager.Instance.EndLevel(ground);
 	}
 

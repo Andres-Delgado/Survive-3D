@@ -51,21 +51,9 @@ public class T_GameManager : MonoBehaviour {
 	}
 
 	public void EndLevel(int level, bool completed = false) {
-		/*switch (level) {
-			case 0:
-				break;
-			case 1:
-
-				break;
-			case 2:
-
-				break;
-			case 3:
-
-				break;
-			default:
-				break;
-		}*/
+		if (!completed) {
+			T_SpawnManager.Instance.EndLevel();
+		}
 		running = false;
 		T_UIManager.Instance.MenuOn();
 	}
