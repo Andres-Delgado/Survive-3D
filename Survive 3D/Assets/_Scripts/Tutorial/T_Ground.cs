@@ -9,7 +9,6 @@ public class T_Ground : Ground {
 			other.gameObject.GetComponent<T_Player>().Death(0);
 		}
 		else if (other.gameObject.CompareTag("Enemy")) {
-			Debug.Log("Ground");
 			other.gameObject.GetComponent<Enemy>().Damage();
 		}
 	}

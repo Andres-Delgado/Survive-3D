@@ -119,7 +119,7 @@ public class T_SpawnManager : MonoBehaviour {
 
 			GameObject enemy = Instantiate<GameObject>(blueEnemyPrefab);
 			enemy.transform.parent = this.gameObject.transform;
-			enemy.GetComponent<IDamageable>().Init(xPosition, zPosition);
+			enemy.GetComponent<T_Blue>().Init(xPosition, zPosition, false, false);
 		}
 
 		xPosition = 0;

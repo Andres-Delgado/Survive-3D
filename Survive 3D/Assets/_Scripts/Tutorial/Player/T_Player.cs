@@ -19,6 +19,8 @@ public class T_Player : MonoBehaviour {
 	[SerializeField] private float fireRate = 0.5f;
 	[SerializeField] private int potions = 0;
 	[SerializeField] private bool canDash = false;
+	[SerializeField] private int score = 0;
+
 
 	private bool canShoot = true;
 	private bool inDashCooldown = false;
@@ -161,6 +163,11 @@ public class T_Player : MonoBehaviour {
 		potions--;
 		//SpawnManager.Instance.SetPotionText(potions);
 		//UIManager.Instance.SetHealth(health);
+	}
+
+	public void SetScore(int scoreValue) {
+		score += scoreValue;
+		T_UIManager.Instance.SetScoreText(score);
 	}
 
 	public void Damage() {

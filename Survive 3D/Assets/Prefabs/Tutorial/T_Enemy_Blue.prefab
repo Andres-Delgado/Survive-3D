@@ -186,10 +186,10 @@ MonoBehaviour:
   markerPrefab: {fileID: 1274083571180822, guid: c9282872f9d1c2540ba0456961f01c52,
     type: 2}
   gemPrefab: {fileID: 1837894763091484, guid: 529c18545e503b84c83afade8f62d390, type: 2}
-  health: 0
-  speed: 0
-  pointValue: 0
-  dropRate: 0
+  health: 1
+  speed: 5
+  pointValue: 5
+  dropRate: 2
 --- !u!135 &135054129881043108
 SphereCollider:
   m_ObjectHideFlags: 1

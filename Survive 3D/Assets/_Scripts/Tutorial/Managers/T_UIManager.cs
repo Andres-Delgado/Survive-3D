@@ -45,6 +45,7 @@ public class T_UIManager : MonoBehaviour {
 	public void StartLevel() {
 		tScreen.gameObject.SetActive(false);
 		tSelection.gameObject.SetActive(false);
+		tHUD.gameObject.SetActive(true);
 	}
 
 	public void MenuOn() {
@@ -55,6 +56,10 @@ public class T_UIManager : MonoBehaviour {
 
 	public void CompletedLevel(int level) {
 		tSelection.CompletedLevel(level);
+	}
+
+	public void SetScoreText(int score) {
+		tHUD.SetScoreText(score);
 	}
 }
 
